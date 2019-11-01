@@ -1,0 +1,65 @@
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: http://msmp-eureka-server-0.msmp-eureka-server.736230ceb1274d0fae2612c36ef30e7f-provincial-division.svc.cluster.local:8000/eureka/
+    instance:
+        instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+        metadataMap:
+            management:
+                msmpName: 用户中心
+                port: ${management.port}
+        preferIpAddress: true
+feign:
+    hystrix:
+        enabled: true
+logging:
+    file: /var/app/logs/app.log
+management:
+    port: 19004
+    security:
+        enabled: false
+
+server:
+    port: 9004
+mybatis:
+  fallback-location: classpath:mybatis/mybatis.cfg.xml        # mybatis配置文件所在路径
+  type-aliases-package: com.unicom.replenish.entity    # 所有Entity别名类所在包
+  mapper-locations:
+    - classpath:mybatis/mapper/**/*.xml                       # mapper映射文件
+  pagehelper:
+    helper-dialect: mysql
+    reasonable: true
+    support-methods-arguments: true
+    params: count=countSql
+
+spring:
+    application:
+      name: usercenter
+    datasource:
+      type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
+      driver-class-name: org.gjt.mm.mysql.Driver              # mysql驱动包
+      url: jdbc:mysql://134.128.77.55:3306/user-info?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+      username: focus_num
+      password: 123456
+      dbcp2:
+        min-idle: 5                                           # 数据库连接池的最小维持连接数
+        initial-size: 5                                       # 初始化连接数
+        max-total: 5                                          # 最大连接数
+        max-wait-millis: 200                                  # 等待连接获取的最大超时时间
+    cloud:
+#        config:
+#            label: master
+#            name: user
+#            profile: 配置文件扩展名
+#            uri: http://msmp-config-server:8880/
+        stream:
+            kafka:
+                binder:
+                    brokers: 10.236.4.42:9092,10.236.4.43:9092,10.236.4.44:9092
+                    zkNodes: 10.236.4.22:2181,10.236.4.23:2181,10.236.4.24:2181
+            bindings:
+                sleuth:
+                    destination: zipkin-provincial-division-736230ceb1274d0fae2612c36ef30e7f-provincial-division
+    sleuth:
+        sampler:
+            percentage: 1.0

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.unicom.hrn.dao.SysUserInfoDao">
+  <resultMap id="BaseResultMap" type="com.unicom.hrn.entity.SysUserInfo">
+    <result column="pri_key" jdbcType="VARCHAR" property="priKey" />
+    <result column="header_id" jdbcType="VARCHAR" property="headerId" />
+    <result column="batch_id" jdbcType="VARCHAR" property="batchId" />
+    <result column="command_type" jdbcType="VARCHAR" property="commandType" />
+    <result column="mdm_emp_code" jdbcType="VARCHAR" property="mdmEmpCode" />
+    <result column="hr_emp_code" jdbcType="VARCHAR" property="hrEmpCode" />
+    <result column="cunc_person_type" jdbcType="VARCHAR" property="cuncPersonType" />
+    <result column="emp_code" jdbcType="VARCHAR" property="empCode" />
+    <result column="emp_name" jdbcType="VARCHAR" property="empName" />
+    <result column="first_name" jdbcType="VARCHAR" property="firstName" />
+    <result column="last_name" jdbcType="VARCHAR" property="lastName" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="date_of_birth" jdbcType="DATE" property="dateOfBirth" />
+    <result column="original_hire_date" jdbcType="DATE" property="originalHireDate" />
+    <result column="effective_start_date" jdbcType="DATE" property="effectiveStartDate" />
+    <result column="effective_end_date" jdbcType="DATE" property="effectiveEndDate" />
+    <result column="creation_date" jdbcType="DATE" property="creationDate" />
+    <result column="high_edpt_code" jdbcType="VARCHAR" property="highEdptCode" />
+    <result column="high_edpt_name" jdbcType="VARCHAR" property="highEdptName" />
+    <result column="high_name" jdbcType="VARCHAR" property="highName" />
+    <result column="high_name_mail" jdbcType="VARCHAR" property="highNameMail" />
+    <result column="hz_yes_no" jdbcType="VARCHAR" property="hzYesNo" />
+    <result column="post_code" jdbcType="VARCHAR" property="postCode" />
+    <result column="quit_user" jdbcType="VARCHAR" property="quitUser" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="channel_code" jdbcType="VARCHAR" property="channelCode" />
+    <result column="cloud_user_code" jdbcType="VARCHAR" property="cloudUserCode" />
+    <result column="if_fictitious" jdbcType="VARCHAR" property="ifFictitious" />
+    <result column="mail_address" jdbcType="VARCHAR" property="mailAddress" />
+    <result column="high_user" jdbcType="VARCHAR" property="highUser" />
+    <result column="high_mail" jdbcType="VARCHAR" property="highMail" />
+    <result column="high_id_code" jdbcType="VARCHAR" property="highIdCode" />
+    <result column="high_phone" jdbcType="VARCHAR" property="highPhone" />
+    <result column="if_high_gain" jdbcType="VARCHAR" property="ifHighGain" />
+    <result column="job_status" jdbcType="VARCHAR" property="jobStatus" />
+    <result column="equip_job_code" jdbcType="VARCHAR" property="equipJobCode" />
+    <result column="if_change_small" jdbcType="VARCHAR" property="ifChangeSmall" />
+    <result column="change_small_des" jdbcType="VARCHAR" property="changeSmallDes" />
+    <result column="employee_number" jdbcType="VARCHAR" property="employeeNumber" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+  </resultMap>
+
+
+  <select id="getSiteCodeByUserCode" parameterType="java.lang.String" resultType="java.lang.String">
+    SELECT site_id
+    from  sys_site_info
+    where user_code = #{userCode,jdbcType=VARCHAR}
+  </select>
+
+</mapper>
