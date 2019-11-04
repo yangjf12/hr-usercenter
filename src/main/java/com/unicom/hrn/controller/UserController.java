@@ -19,4 +19,9 @@ public class UserController {
     public List<String> login(@RequestParam String userCode){
         return sysUserInfoService.getSiteCodeByUserCode(userCode);
     }
+
+    @RequestMapping("/hello")
+    public String hello() {
+        return "hello world！";
+    }
 }
